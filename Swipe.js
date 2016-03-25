@@ -2,6 +2,7 @@
 //页面滑动 //
 /////////
 
+
 /**
  * [Swipe description]
  * @param {[type]} container [页面容器节点]

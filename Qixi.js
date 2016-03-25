@@ -1,9 +1,15 @@
+/**
+ * 小孩走路
+ * @param {[type]} container [description]
+ */
+function BoyWalk(){
+
 var container = $("#content");
 // 页面可视区域
 var visualWidth = container.width();
 var visualHeight = container.height();
 
-var swipe =Swipe(container);
+
 // 获取数据
 var getValue = function(className){
     var $elem = $('' + className + '');
@@ -19,6 +25,7 @@ var pathY = function(){
     return data.top + data.height/2;
 }();
 var $boy = $("#boy");
+var boyWidth = $boy.width();
 var boyHeight = $boy.height();
 // 修正小男孩的正确位置
 $boy.css({
@@ -29,6 +36,10 @@ $boy.css({
 //===================动画处理============================ //
 ////////////////////////////////////////////////////////
 
+//暂停走路
+function pauseWalk(){
+    $boy.addClass('pauseWalk');
+}
 // 恢复走路
 function restoreWalk(){
     $boy.removeClass('pauseWalk');
@@ -53,7 +64,9 @@ function stratRun(options,runTime){
         options,
         runTime,
         'linear',
-        function(){}
+        function(){
+            dfdPlay.resolve();// 动画完成
+        }
     );
     return dfdPlay;
 }
@@ -70,4 +83,21 @@ function walkRun(time,dist,disY){
         'top':disY?disY:undefined
     },time);
     return d1;
+}
+    return {
+        // 开始走路
+        walkTo:function (time,proportionX,proportionY){
+            var distX = calculateDist('x',proportionX);
+            var distY = calculateDist('y',proportionY);
+            return walkRun(time,distX,distY);
+        },
+        // 停止走路
+        stopWalk:function(){
+            pauseWalk();
+        },
+        setColoer:function(value){
+            $boy.css('background-color',value)
+        }
+    }
+
 }
