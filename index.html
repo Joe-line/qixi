@@ -17,11 +17,17 @@
 <div id='content'>
 	<ul class='content-wrap'>
 		<li>
+		<!-- 背景 -->
 			<div class="a_background">
 				<div class="a_background_top"></div>
 				<div class="a_background_middle"></div>
 				<div class="a_background_botton"></div>
 			</div>
+			 <!-- 云 -->
+			<div class="cloudArea">
+                    <div class="cloud cloud1"></div>
+                    <div class="cloud cloud2"></div>
+            </div>
 			<!-- 太阳 -->
 			<div id="sun"></div>
 		</li>
@@ -59,6 +65,10 @@
 
 			// 太阳公转
 			$("#sun").addClass('rotation');
+			//飘云
+			$(".cloud:first").addClass('cloud1Anim');
+			$(".cloud:last").addClass('cloud2Anim');
+
 			// 开始第一次走路
 			boy.walkTo(2000,0.2)
 					.then(function(){
