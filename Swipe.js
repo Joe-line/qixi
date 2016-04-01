@@ -45,6 +45,7 @@ function Swipe(container) {
             'transition-duration'        : speed + 'ms',
             'transform'                  : 'translate3d(-' + x + 'px,0px,0px)'
         });
+        console.log(speed,"11111111111111");
         return this;
     };
 
